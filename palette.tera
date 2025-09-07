@@ -1,30 +1,17 @@
+---
+whiskers:
+  version: "^2.5.1"
+  filename: "palette.lua"
+  matrix:
+    - flavor
+  filename: themes/catppuccin-{{flavor.identifier}}.lua
+---
 -- SPDX-FileCopyrightText: 2025 phntxx <phntxx@users.noreply.github.com>
 --
 -- SPDX-License-Identifier: GPL-3.0-only
 
 local lvgl = require("lvgl")
 local font = require("font")
-
--- see https://github.com/catppuccin/catppuccin/blob/main/docs/style-guide.md
-local colors = {
-	background = "#24273a",
-	secondary = "#181926", -- using crust
-	surface = "#363a4f", -- using surface 0
-	overlay = "#6e738d", -- using overlay 0
-	body = "#cad3f5",
-	main_headline = "#cad3f5",
-	sub_headline = "#b8c0e0", -- using subtext 1
-	subtle = "#8087a2",
-	links = "#8aadf4",
-	success = "#a6da95",
-	warning = "#eed49f",
-	error = "#ed8796",
-	tag = "#8aadf4",
-	selection_background = "#939ab7",
-	cursor = "#f4dbd6",
-	active = "#b7bdf8",
-	inactive = "#6e738d"
-}
 
 return {
 	base = {
@@ -36,21 +23,21 @@ return {
 	root = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["background"],
-			text_color = colors["body"]
+			bg_color = "#{{ flavor.colors.base.hex }}",
+			text_color = "#{{ flavor.colors.text.hex }}"
 		} },
 	},
 	header = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["surface"]
+			bg_color = "#{{ flavor.colors.surface0.hex }}"
 		} },
 	},
 	pop_up = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["surface"],
-			border_color = colors["active"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
+			border_color = "#{{ lavender.hex }}",
 			border_width = 1,
 			radius = 0, -- todo this is not working??
 		} },
@@ -64,28 +51,28 @@ return {
 			pad_top = 1,
 			pad_bottom = 1,
 			border_width = 1,
-			bg_color = colors["surface"],
-			border_color = colors["inactive"],
-			image_recolor = colors["inactive"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
+			image_recolor = "#{{ flavor.colors.overlay0.hex }}",
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			border_color = colors["cursor"],
-			image_recolor = colors["cursor"],
-			text_color = colors["cursor"],
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
+			image_recolor = "#{{ flavor.colors.rosewater.hex }}",
+			text_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 	},
 	listbutton = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 			flex_cross_place = lvgl.FLEX_ALIGN.CENTER,
 			pad_column = 4,
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
 			bg_opa = lvgl.OPA(20),
-			bg_color = colors["selection_background"],
+			bg_color = "#{{ overlay2.hex }}",
 		} },
 	},
 	bar = {
@@ -96,69 +83,69 @@ return {
 	slider = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["surface"],
-			border_color = colors["background"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
+			border_color = "#{{ flavor.colors.base.hex }}",
 			border_width = 1
 		} },
 		{ lvgl.PART.INDICATOR, lvgl.Style {
-			bg_color = colors["active"],
-			border_color = colors["background"],
+			bg_color = "#{{ lavender.hex }}",
+			border_color = "#{{ flavor.colors.base.hex }}",
 			border_width = 1,
 		} },
 		{ lvgl.PART.KNOB, lvgl.Style {
-			bg_color = colors["overlay"],
-			border_color = colors["overlay"],
+			bg_color = "#{{ flavor.colors.overlay0.hex }}",
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
 			border_width = 1,
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
-			border_color = colors["cursor"],
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.INDICATOR | lvgl.STATE.FOCUSED, lvgl.Style {
-			border_color = colors["cursor"],
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.KNOB | lvgl.STATE.FOCUSED, lvgl.Style {
-			bg_color = colors["body"],
-			border_color = colors["cursor"],
+			bg_color = "#{{ flavor.colors.text.hex }}",
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.KNOB | lvgl.STATE.EDITED, lvgl.Style {
 			pad_all = 1,
 		} },
 		{ lvgl.PART.INDICATOR | lvgl.STATE.CHECKED, lvgl.Style {
-			bg_color = colors["active"],
+			bg_color = "#{{ lavender.hex }}",
 		} },
 	},
 	scrubber = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["surface"],
-			border_color = colors["background"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
+			border_color = "#{{ flavor.colors.base.hex }}",
 			border_width = 1
 		} },
 		{ lvgl.PART.INDICATOR, lvgl.Style {
-			bg_color = colors["active"],
-			border_color = colors["background"],
+			bg_color = "#{{ lavender.hex }}",
+			border_color = "#{{ flavor.colors.base.hex }}",
 			border_width = 1,
 		} },
 		{ lvgl.PART.KNOB, lvgl.Style {
-			bg_color = colors["overlay"],
-			border_color = colors["overlay"],
+			bg_color = "#{{ flavor.colors.overlay0.hex }}",
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
 			border_width = 1,
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
-			border_color = colors["cursor"],
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.INDICATOR | lvgl.STATE.FOCUSED, lvgl.Style {
-			border_color = colors["cursor"],
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.KNOB | lvgl.STATE.FOCUSED, lvgl.Style {
-			bg_color = colors["body"],
-			border_color = colors["cursor"],
+			bg_color = "#{{ flavor.colors.text.hex }}",
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.KNOB | lvgl.STATE.EDITED, lvgl.Style {
 			pad_all = 1,
 		} },
 		{ lvgl.PART.INDICATOR | lvgl.STATE.CHECKED, lvgl.Style {
-			bg_color = colors["active"],
+			bg_color = "#{{ lavender.hex }}",
 		} },
 	},
 	switch = {
@@ -166,28 +153,28 @@ return {
 			bg_opa = lvgl.OPA(100),
 			width = 22,
 			height = 12,
-			bg_color = colors["background"],
-			border_color = colors["inactive"],
+			bg_color = "#{{ flavor.colors.base.hex }}",
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
 			border_width = 1,
 		} },
 		{ lvgl.PART.INDICATOR, lvgl.Style {
-			bg_color = colors["background"],
+			bg_color = "#{{ flavor.colors.base.hex }}",
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
-			border_color = colors["cursor"],
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 		{ lvgl.PART.INDICATOR | lvgl.STATE.CHECKED, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["active"],
+			bg_color = "#{{ lavender.hex }}",
 		} },
 		{ lvgl.PART.KNOB, lvgl.Style {
-			bg_color = colors["surface"],
-			border_color = colors["inactive"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
 			border_width = 1,
 		} },
 		{ lvgl.PART.KNOB | lvgl.STATE.FOCUSED, lvgl.Style {
-			bg_color = colors["body"],
-			border_color = colors["cursor"],
+			bg_color = "#{{ flavor.colors.text.hex }}",
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
 		} },
 	},
 
@@ -195,32 +182,32 @@ return {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			pad_all = 2,
 			border_width = 1,
-			border_color = colors["inactive"],
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
 			border_side = 15, -- LV_BORDER_SIDE_FULL
-			bg_color = colors["surface"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 			bg_opa = lvgl.OPA(100),
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			bg_color = colors["surface"],
-			border_color = colors["cursor"],
-			image_recolor = colors["cursor"],
-			text_color = colors["cursor"]
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
+			border_color = "#{{ flavor.colors.rosewater.hex }}",
+			image_recolor = "#{{ flavor.colors.rosewater.hex }}",
+			text_color = "#{{ flavor.colors.rosewater.hex }}"
 		} },
 	},
 	dropdownlist = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			pad_all = 2,
 			border_width = 1,
-			border_color = colors["active"],
+			border_color = "#{{ lavender.hex }}",
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["surface"]
+			bg_color = "#{{ flavor.colors.surface0.hex }}"
 		} },
 		{ lvgl.PART.SELECTED | lvgl.STATE.CHECKED, lvgl.Style {
 			bg_opa = lvgl.OPA(20),
-			bg_color = colors["selection_background"],
+			bg_color = "#{{ overlay2.hex }}",
 		} },
 	},
 
@@ -229,25 +216,25 @@ return {
 			pad_top = 2,
 			pad_bottom = 4,
 			text_font = font.fusion_10,
-			text_color = colors["sub_headline"],
+			text_color = "#{{ subtext1.hex }}",
 		} },
 	},
 	icon_disabled = {
 		{ lvgl.PART.MAIN, lvgl.Style {
-			image_recolor = colors["inactive"]
+			image_recolor = "#{{ flavor.colors.overlay0.hex }}"
 		} },
 	},
 	icon_enabled = {
 		{ lvgl.PART.MAIN, lvgl.Style {
-			image_recolor = colors["active"]
+			image_recolor = "#{{ lavender.hex }}"
 		} },
 	},
 	now_playing = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = colors["surface"],
+			bg_color = "#{{ flavor.colors.surface0.hex }}",
 			border_width = 1,
-			border_color = colors["inactive"],
+			border_color = "#{{ flavor.colors.overlay0.hex }}",
 			border_side = 15, -- LV_BORDER_SIDE_FULL
 		} },
 	},
@@ -255,84 +242,84 @@ return {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			pad_all = 4,
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["inactive"],
+			image_recolor = "#{{ flavor.colors.overlay0.hex }}",
 		} },
 	},
 	database_indicator = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 		} },
 	},
 	bluetooth_icon = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 		} },
 	},
 	battery = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"]
+			image_recolor = "#{{ flavor.colors.text.hex }}"
 		} },
 	},
 	battery_0 = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["error"],
+			image_recolor = "#{{ flavor.colors.red.hex }}",
 		} },
 	},
 	battery_20 = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["error"],
+			image_recolor = "#{{ flavor.colors.red.hex }}",
 		} },
 	},
 	battery_40 = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["warning"],
+			image_recolor = "#{{ yellow.hex }}",
 		} },
 	},
 	battery_60 = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 		} },
 	},
 	battery_80 = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 		} },
 	},
 	battery_100 = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["success"],
+			image_recolor = "#{{ flavor.colors.green.hex }}",
 		} },
 	},
 	battery_charging = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 		} },
 	},
 	battery_charge_icon = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["tag"],
+			image_recolor = "#{{ flavor.colors.blue.hex }}",
 		} },
 	},
 	battery_charge_outline = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			image_recolor = colors["overlay"],
+			image_recolor = "#{{ flavor.colors.overlay0.hex }}",
 		} },
 	},
 	regulatory_icons = {
 		{ lvgl.PART.MAIN, lvgl.Style {
-			image_recolor = colors["body"],
+			image_recolor = "#{{ flavor.colors.text.hex }}",
 		} },
 	},
 }
