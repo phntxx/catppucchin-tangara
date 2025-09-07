@@ -1,5 +1,6 @@
--- SPDX-FileCopyrightText: 2025 phntxx <phntxx@users.noreply.github.com>
---
+-- SPDX-FileContributor: phntxx
+-- SPDX-FileType: SOURCE
+-- SPDX-FileCopyrightText: 2025 ayumi <ayumi@noreply.codeberg.org>
 -- SPDX-License-Identifier: GPL-3.0-only
 
 local lvgl = require("lvgl")
@@ -13,7 +14,7 @@ local colors = {
 	overlay = "#737994", -- using overlay 0
 	body = "#c6d0f5",
 	main_headline = "#c6d0f5",
-	sub_headline = "#a5adce", -- using subtext 0
+	sub_headline = "#b5bfe2", -- using subtext 1
 	subtle = "#838ba7",
 	links = "#8caaee",
 	success = "#a6d189",
