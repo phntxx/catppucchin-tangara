@@ -1,4 +1,4 @@
--- SPDX-FileCopyrightText: 2025 phntxx <phntxx@users.noreply.github.com>
+-- SPDX-FileCopyrightText: 2025 Catppuccin Org <releases@catppuccin.com>
 --
 -- SPDX-License-Identifier: GPL-3.0-only
 
