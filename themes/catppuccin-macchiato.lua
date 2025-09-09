@@ -43,7 +43,7 @@ return {
 			pad_top = 1,
 			pad_bottom = 1,
 			border_width = 1,
-			bg_color = "#363a4f",
+			bg_color = "#1e2030",
 			border_color = "#6e738d",
 			image_recolor = "#6e738d",
 		} },
@@ -176,14 +176,14 @@ return {
 			border_width = 1,
 			border_color = "#6e738d",
 			border_side = 15, -- LV_BORDER_SIDE_FULL
-			bg_color = "#363a4f",
+			bg_color = "#1e2030",
 			image_recolor_opa = 255, -- LV_OPA_COVER
 			image_recolor = "#cad3f5",
 			bg_opa = lvgl.OPA(100),
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			bg_color = "#363a4f",
+			bg_color = "#1e2030",
 			border_color = "#f4dbd6",
 			image_recolor = "#f4dbd6",
 			text_color = "#f4dbd6"
@@ -224,7 +224,7 @@ return {
 	now_playing = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = "#363a4f",
+			bg_color = "#1e2030",
 			border_width = 1,
 			border_color = "#6e738d",
 			border_side = 15, -- LV_BORDER_SIDE_FULL

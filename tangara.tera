@@ -50,7 +50,7 @@ return {
 			pad_top = 1,
 			pad_bottom = 1,
 			border_width = 1,
-			bg_color = "#{{ surface0.hex }}",
+			bg_color = "#{{ mantle.hex }}",
 			border_color = "#{{ overlay0.hex }}",
 			image_recolor = "#{{ overlay0.hex }}",
 		} },
@@ -183,14 +183,14 @@ return {
 			border_width = 1,
 			border_color = "#{{ overlay0.hex }}",
 			border_side = 15, -- LV_BORDER_SIDE_FULL
-			bg_color = "#{{ surface0.hex }}",
+			bg_color = "#{{ mantle.hex }}",
 			image_recolor_opa = 255, -- LV_OPA_COVER
 			image_recolor = "#{{ text.hex }}",
 			bg_opa = lvgl.OPA(100),
 		} },
 		{ lvgl.PART.MAIN | lvgl.STATE.FOCUSED, lvgl.Style {
 			image_recolor_opa = 255, -- LV_OPA_COVER
-			bg_color = "#{{ surface0.hex }}",
+			bg_color = "#{{ mantle.hex }}",
 			border_color = "#{{ rosewater.hex }}",
 			image_recolor = "#{{ rosewater.hex }}",
 			text_color = "#{{ rosewater.hex }}"
@@ -231,7 +231,7 @@ return {
 	now_playing = {
 		{ lvgl.PART.MAIN, lvgl.Style {
 			bg_opa = lvgl.OPA(100),
-			bg_color = "#{{ surface0.hex }}",
+			bg_color = "#{{ mantle.hex }}",
 			border_width = 1,
 			border_color = "#{{ overlay0.hex }}",
 			border_side = 15, -- LV_BORDER_SIDE_FULL
